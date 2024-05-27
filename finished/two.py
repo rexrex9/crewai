@@ -1,7 +1,10 @@
-url = "https://playtoearn.com/blockchaingames"
 
+import os,sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 from crewai import Agent, Task, Crew
 from crewai_tools import SerperDevTool,ScrapeWebsiteTool, WebsiteSearchTool
+
+url = "https://playtoearn.com/blockchaingames"
 
 support_agent = Agent(
     role="找GameFi的助理",

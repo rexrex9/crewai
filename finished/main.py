@@ -1,5 +1,5 @@
 import os,sys
-
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 os.environ["OPENAI_MODEL_NAME"] = 'gpt-3.5-turbo'
 
 from crewai import Agent, Task, Crew
