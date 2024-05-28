@@ -1,3 +1,4 @@
+import json
 import os,sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 from crewai import Agent, Task, Crew
@@ -66,3 +67,7 @@ if __name__ == '__main__':
     result = get_game_detail(url)
     print(result)
 
+    print(json.loads(result))
+    d = json.loads(result)
+    with open("game_detail.json","w") as f:
+        json.dump(d,f,indent=4)
