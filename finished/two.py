@@ -5,10 +5,11 @@ from crewai import Agent, Task, Crew
 from crewai_tools import SerperDevTool,ScrapeWebsiteTool, WebsiteSearchTool
 
 url = "https://playtoearn.com/blockchaingames"
+#url = "https://playtoearn.com/blockchaingame/axie-infinity"
 
-support_agent = Agent(
-    role="找GameFi的助理",
-	goal="帮助用户找到GameFi游戏",
+overall_agent = Agent(
+    role="找GameFi详细页面谅解的助理",
+	goal="找到GameFi游戏的详细页面连接",
 	backstory=(
         "你在playtoearn工作，现在正在为{customer}提供支持。"
 	),
@@ -16,20 +17,17 @@ support_agent = Agent(
 	verbose=True
 )
 
-
-docs_scrape_tool = ScrapeWebsiteTool(
-    website_url=url
-)
+overall_scrape_tool = ScrapeWebsiteTool(website_url=url)
 
 find_game_task = Task(
-    description=("用户{customer}需要找到GameFi游戏"),
-    expected_output=("找到GameFi游戏的信息"),
-	tools=[docs_scrape_tool],
-    agent=support_agent,
+    description=("用户{customer}需要找到各个游戏的详细页面连接"),
+    expected_output=("找到GameFi游戏详细页面连接"),
+	tools=[overall_scrape_tool],
+    agent=overall_agent,
 )
 
 crew = Crew(
-  agents=[support_agent],
+  agents=[overall_agent],
   tasks=[find_game_task],
   verbose=2,
   memory=True
@@ -37,7 +35,7 @@ crew = Crew(
 
 inputs = {
     "customer": "张三",
-    "inquiry": "给我详细介绍一下Song of Rising这个游戏",
+    "inquiry": "给我找一下GameFi游戏的详细页面连接",
 }
 result = crew.kickoff(inputs=inputs)
 
