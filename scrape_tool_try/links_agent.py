@@ -1,4 +1,4 @@
-
+import json
 import os,sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 from crewai import Agent, Task, Crew
@@ -25,7 +25,8 @@ overall_scrape_tool = WebsiteSearchTool(website_url=url)
 
 find_game_task = Task(
     description=("用户{customer}需要找到各个游戏的详细页面连接"),
-    expected_output=("找到GameFi游戏详细页面连接,输出一个列表给用户{customer},数量为{num}个"),
+    expected_output=("找到GameFi游戏详细页面连接,输出一个列表给用户{customer},数量为{num}个,输入的列表是json可解析的仅包含链接即可,"
+                     "例如：[\"https://playtoearn.com/blockchaingame/The-New-Order\",\"https://playtoearn.com/blockchaingame/Another-Game\"]"),
 	tools=[overall_scrape_tool],
     agent=overall_agent,
 )
@@ -45,3 +46,7 @@ inputs = {
 result = crew.kickoff(inputs=inputs)
 
 print(result)
+d = json.loads(result)
+print(d)
+for dd in d:
+    print(dd)
