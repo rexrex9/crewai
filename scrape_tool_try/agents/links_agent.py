@@ -8,7 +8,7 @@ url = "https://playtoearn.com/blockchaingames"
 #url = "https://playtoearn.com/blockchaingame/axie-infinity"
 
 overall_agent = Agent(
-    role="找GameFi详细页面谅解的助理",
+    role="找GameFi详细页面链接的助理",
 	goal="找到GameFi游戏的详细页面连接",
 	backstory=(
         'https://playtoearn.com/blockchaingame/+游戏名是一个GameFi游戏详细页面连接,'
