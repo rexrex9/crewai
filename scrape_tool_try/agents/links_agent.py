@@ -1,6 +1,6 @@
 import json
 import os,sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 from crewai import Agent, Task, Crew
 from crewai_tools import ScrapeWebsiteTool, WebsiteSearchTool
 
