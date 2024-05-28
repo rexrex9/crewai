@@ -36,7 +36,7 @@ crew = Crew(
 
 inputs = {
     "customer": "张三",
-    "inquiry": "给我找一下GameFi游戏的详细页面连接",
+    "inquiry": "给我找10个GameFi游戏的详细页面连接",
 }
 result = crew.kickoff(inputs=inputs)
 
