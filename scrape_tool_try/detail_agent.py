@@ -16,17 +16,15 @@ detail_agent = Agent(
 )
 
 
-detail_scrape_tool = ScrapeWebsiteTool()
-
-find_game_detail_task = Task(
-    description=("用户{customer}需要找到各个游戏的详细内容"),
-    expected_output=("找到GameFi游戏的详细内容"),
-	tools=[detail_scrape_tool],
-    agent=detail_agent,
-)
-
 def get_game_detail(url):
-    find_game_detail_task.tools[0].website_url = url
+    detail_scrape_tool = ScrapeWebsiteTool(website_url=url)
+
+    find_game_detail_task = Task(
+        description=("用户{customer}需要找到各个游戏的详细内容"),
+        expected_output=("找到GameFi游戏的详细内容"),
+        tools=[detail_scrape_tool],
+        agent=detail_agent,
+    )
     crew = Crew(
       agents=[detail_agent],
       tasks=[find_game_detail_task],
