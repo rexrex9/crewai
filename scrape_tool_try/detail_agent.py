@@ -11,10 +11,7 @@ detail_agent = Agent(
 	goal="根据详细页面链接爬取游戏详细内容",
 	backstory=(
         '根据前一个agent提供的详细页面链接，爬取游戏的详细内容,并以json格式返回给用户。'
-        '请确保返回的内容是有效的json格式。例如'
-        '{"name": "AI Arena","url": "https://playtoearn.net/blockchaingame/ai-arena","genres": ["Fighting","PVP","Sci-Fi"],'
-        '"blockchain": "Other","platforms": ["Web"],"status": "Live","content": "AI Arena is a breakthrough gaming experience where humans collect, train and battle AI powered characters in PvP platform fighting game.\n\nIn the AI Arena - Gaming Competition, Gamers can purchase, train and battle AI-enabled NFTs in a PvP fighting game. \n\nGame Style - AI Arena is a platform fighting game, where the objective is to knock your opponent off of a platform. \n\nHow to Play - First, you train your NFT character through Imitation Learning, where the AI learns to play the game by copying your actions. When you feel your character is ready to fight, you submit the NFT into the arena to compete in Ranked Battle. Your NFT then fights autonomously against opponents near its skill level. \n\nThe Objective -The objective of the game is to train the most powerful AI NFT, climb the global leaderboard, and earn rewards in our native token called Neurons or $NRN.",'
-        '"NFT_support": "Yes","free_to_play": "Yes","play_to_earns": ["Crypto"],"socialscore_number": "612","socialscore_change": "(-33.21%)"}'
+        '请确保返回的内容是有效的json格式'
 	),
 	allow_delegation=False,
 	verbose=True
@@ -37,7 +34,7 @@ def get_game_detail(url):
 
     find_game_detail_task = Task(
         description=("用户{customer}需要找到游戏的详细内容"),
-        expected_output=('找到GameFi游戏的详细内容,并以json格式返回给用户{customer}'),
+        expected_output=('找到GameFi游戏的详细内容,并以json格式返回给用户{customer},包含字段"name","url","genres","blockchain","platforms","status","content","NFT_support","free_to_play","play_to_earns","socialscore_number","socialscore_change"'),
         tools=[detail_scrape_tool],
         agent=detail_agent,
     )
