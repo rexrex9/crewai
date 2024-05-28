@@ -49,14 +49,10 @@ def get_game_detail(url):
         "inquiry": "给我这个游戏的详细内容",
     }
     result = crew.kickoff(inputs=inputs)
-    return result
+    return json.loads(result)
 
 if __name__ == '__main__':
     url = "https://playtoearn.com/blockchaingame/axie-infinity"
     result = get_game_detail(url)
     print(result)
 
-    print(json.loads(result))
-    d = json.loads(result)
-    with open("game_detail.json","w") as f:
-        json.dump(d,f,indent=4)

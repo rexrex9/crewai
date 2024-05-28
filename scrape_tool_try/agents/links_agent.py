@@ -38,15 +38,13 @@ crew = Crew(
   memory=True
 )
 
-inputs = {
-    "customer": "张三",
-    "inquiry": "给我找10个GameFi游戏的详细页面连接",
-    "num": 10
-}
-result = crew.kickoff(inputs=inputs)
 
-print(result)
-d = json.loads(result)
-print(d)
-for dd in d:
-    print(dd)
+def get_links(num):
+    inputs = {
+        "customer": "张三",
+        "inquiry": "给我找10个GameFi游戏的详细页面连接",
+        "num": num
+    }
+    result = crew.kickoff(inputs=inputs)
+    d = json.loads(result)
+    return d
