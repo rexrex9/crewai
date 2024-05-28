@@ -8,7 +8,7 @@ url = "https://playtoearn.com/blockchaingames"
 #url = "https://playtoearn.com/blockchaingame/axie-infinity"
 
 overall_agent = Agent(
-    role="找GameFi详细页面谅解的助理",
+    role="找GameFi详细页面链接的助理",
 	goal="找到GameFi游戏的详细页面连接",
 	backstory=(
         'https://playtoearn.com/blockchaingame/+游戏名是一个GameFi游戏详细页面连接,'
@@ -30,16 +30,37 @@ find_game_task = Task(
     agent=overall_agent,
 )
 
+
+detail_agent = Agent(
+    role="GameFi详细内容助理",
+	goal="根据详细页面链接爬取游戏详细内容",
+	backstory=(
+        '根据前一个agent提供的详细页面链接，爬取游戏的详细内容'
+	),
+	allow_delegation=False,
+	verbose=True
+)
+detail_scrape_tool = ScrapeWebsiteTool()
+
+find_game_detail_task = Task(
+    description=("用户{customer}需要找到各个游戏的详细内容"),
+    expected_output=("找到GameFi游戏的详细内容"),
+	tools=[detail_scrape_tool],
+    agent=detail_agent,
+)
+
+
+
 crew = Crew(
-  agents=[overall_agent],
-  tasks=[find_game_task],
+  agents=[overall_agent,detail_agent],
+  tasks=[find_game_task,find_game_detail_task],
   verbose=2,
   memory=True
 )
 
 inputs = {
     "customer": "张三",
-    "inquiry": "给我找10个GameFi游戏的详细页面连接",
+    "inquiry": "给我找10个GameFi游戏的详细内容",
     "num": 10
 }
 result = crew.kickoff(inputs=inputs)

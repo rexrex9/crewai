@@ -1,7 +1,8 @@
+
 import os,sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 from crewai import Agent, Task, Crew
-from crewai_tools import SerperDevTool,ScrapeWebsiteTool, WebsiteSearchTool
+from crewai_tools import ScrapeWebsiteTool, WebsiteSearchTool
 
 url = "https://playtoearn.com/blockchaingames"
 #url = "https://playtoearn.com/blockchaingame/axie-infinity"
@@ -20,7 +21,7 @@ overall_agent = Agent(
 	verbose=True
 )
 
-overall_scrape_tool = ScrapeWebsiteTool(website_url=url)
+overall_scrape_tool = WebsiteSearchTool(website_url=url)
 
 find_game_task = Task(
     description=("用户{customer}需要找到各个游戏的详细页面连接"),
