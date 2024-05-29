@@ -2,6 +2,7 @@ import json
 import os,sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 from crewai import Agent, Task, Crew
+import time
 from crewai_tools import ScrapeWebsiteTool, WebsiteSearchTool
 
 
@@ -53,6 +54,8 @@ def get_game_detail(url):
 
 if __name__ == '__main__':
     url = "https://playtoearn.com/blockchaingame/axie-infinity"
+    t1 = time.time()
     result = get_game_detail(url)
-    print(result)
+    t2 = time.time()
+    print(t2-t1)
 
