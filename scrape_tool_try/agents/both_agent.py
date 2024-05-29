@@ -61,8 +61,7 @@ crew = Crew(
 def query(query):
     inputs = {
         "customer": "张三",
-        "inquiry": query,
-        "game": "AI Arena",
+        "inquiry": query
     }
     result = crew.kickoff(inputs=inputs)
     return result
