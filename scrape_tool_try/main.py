@@ -1,6 +1,6 @@
 import sys,os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
-from scrape_tool_try.agents import links_agent as la, detail_agent as da
+from scrape_tool_try.agents import links_agent as la, detail_agent as da,both_agent as ba
 from datas import filepaths as fp
 import json
 def scray_try():
@@ -16,5 +16,8 @@ def scray_try():
             print("error")
             continue
 
+def query_game_detail(query):
+    ba.query(query)
+
 if __name__ == '__main__':
-    scray_try()
+    query_game_detail("给我AI Arena这个游戏的详细内容")

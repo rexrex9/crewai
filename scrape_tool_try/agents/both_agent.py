@@ -9,7 +9,7 @@ url = "https://playtoearn.com/blockchaingames"
 
 overall_agent = Agent(
     role="找GameFi详细页面链接的助理",
-	goal="找到GameFi游戏的详细页面连接",
+	goal="根据用户的query,找到他所需GameFi游戏的详细页面连接",
 	backstory=(
         'https://playtoearn.com/blockchaingame/+游戏名是一个GameFi游戏详细页面连接,'
         '所以仅需找到游戏名组合成的这样的连接返回用户即可。请注意，这些链接中的游戏名中的空格需'
@@ -24,8 +24,8 @@ overall_agent = Agent(
 overall_scrape_tool = WebsiteSearchTool(website_url=url)
 
 find_game_task = Task(
-    description=("用户{customer}需要找到各个游戏的详细页面连接"),
-    expected_output=("找到GameFi游戏详细页面连接,输出一个列表给用户{customer},数量为{num}个"),
+    description=("用户{customer}需要找到某个游戏的详细页面连接"),
+    expected_output=("找到GameFi游戏详细页面连接"),
 	tools=[overall_scrape_tool],
     agent=overall_agent,
 )
@@ -33,9 +33,9 @@ find_game_task = Task(
 
 detail_agent = Agent(
     role="GameFi详细内容助理",
-	goal="根据详细页面链接爬取游戏详细内容",
+	goal="根据详细页面链接把游戏详细内容返回给用户",
 	backstory=(
-        '根据前一个agent提供的详细页面链接，爬取游戏的详细内容'
+        '根据前一个agent提供的详细页面链接，得到游戏的详细内容给用户'
 	),
 	allow_delegation=False,
 	verbose=True
@@ -43,7 +43,7 @@ detail_agent = Agent(
 detail_scrape_tool = ScrapeWebsiteTool()
 
 find_game_detail_task = Task(
-    description=("用户{customer}需要找到各个游戏的详细内容"),
+    description=("用户{customer}需要找到游戏的详细内容"),
     expected_output=("找到GameFi游戏的详细内容"),
 	tools=[detail_scrape_tool],
     agent=detail_agent,
@@ -58,11 +58,13 @@ crew = Crew(
   memory=True
 )
 
-inputs = {
-    "customer": "张三",
-    "inquiry": "给我找10个GameFi游戏的详细内容",
-    "num": 10
-}
-result = crew.kickoff(inputs=inputs)
+def query(query):
+    inputs = {
+        "customer": "张三",
+        "inquiry": query,
+    }
+    result = crew.kickoff(inputs=inputs)
+    return result
 
-print(result)
+
+
