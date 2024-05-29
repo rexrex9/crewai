@@ -24,8 +24,8 @@ overall_agent = Agent(
 overall_scrape_tool = WebsiteSearchTool(website_url=url)
 
 find_game_task = Task(
-    description=("用户{customer}需要找到某个游戏的详细页面连接"),
-    expected_output=("找到GameFi游戏详细页面连接"),
+    description=("用户{customer}需要找到{game}详细页面连接"),
+    expected_output=("找到{game}详细页面连接"),
 	tools=[overall_scrape_tool],
     agent=overall_agent,
 )
@@ -44,7 +44,7 @@ detail_scrape_tool = ScrapeWebsiteTool()
 
 find_game_detail_task = Task(
     description=("用户{customer}需要找到游戏的详细内容"),
-    expected_output=("找到GameFi游戏的详细内容"),
+    expected_output=("找到{game}的详细内容"),
 	tools=[detail_scrape_tool],
     agent=detail_agent,
 )
