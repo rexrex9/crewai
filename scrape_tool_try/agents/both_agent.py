@@ -62,6 +62,7 @@ def query(query):
     inputs = {
         "customer": "张三",
         "inquiry": query,
+        "game": "AI Arena",
     }
     result = crew.kickoff(inputs=inputs)
     return result
