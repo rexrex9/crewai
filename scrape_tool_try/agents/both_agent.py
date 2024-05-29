@@ -40,13 +40,14 @@ detail_agent = Agent(
 	allow_delegation=False,
 	verbose=True
 )
-detail_scrape_tool = ScrapeWebsiteTool()
+detail_scrape_tool = WebsiteSearchTool()
 
 find_game_detail_task = Task(
     description=("用户{customer}需要找到游戏的详细内容"),
     expected_output=("找到游戏的详细内容"),
 	tools=[detail_scrape_tool],
     agent=detail_agent,
+
 )
 
 
