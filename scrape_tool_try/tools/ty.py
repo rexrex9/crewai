@@ -19,8 +19,8 @@ agent = Agent(
 )
 
 task = Task(
-    description="Calculate the sum of two numbers",
-    expected_output="The sum of two numbers",
+    description="Calculate the sum of two numbers about {query}",
+    expected_output="The sum of two numbers about {query}",
     agent=agent,
 )
 
