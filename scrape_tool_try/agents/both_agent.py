@@ -2,7 +2,9 @@
 import os,sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 from crewai import Agent, Task, Crew
-from crewai_tools import ScrapeWebsiteTool, WebsiteSearchTool
+from crewai_tools import ScrapeWebsiteTool, WebsiteSearchTool, PDFSearchTool
+from crewai import Process
+
 
 url = "https://playtoearn.com/blockchaingames"
 #url = "https://playtoearn.com/blockchaingame/axie-infinity"
@@ -34,9 +36,7 @@ find_game_task = Task(
 detail_agent = Agent(
     role="GameFi详细内容助理",
 	goal="根据详细页面链接把游戏详细内容返回给用户",
-	backstory=(
-        '根据前一个agent提供的详细页面链接，得到游戏的详细内容给用户'
-	),
+	backstory=('根据前一个agent提供的详细页面链接，得到游戏的详细内容给用户'),
 	allow_delegation=False,
 	verbose=True
 )
@@ -47,7 +47,6 @@ find_game_detail_task = Task(
     expected_output=("找到游戏的详细内容"),
 	tools=[detail_scrape_tool],
     agent=detail_agent,
-
 )
 
 
