@@ -13,6 +13,7 @@ class MyCustomTool(BaseTool):
 agent = Agent(
     role="Calculator",
     goal="Calculate the sum of two numbers",
+    backstory="The agent should be able to calculate the sum of two numbers",
     verbose=True,
     tools=[MyCustomTool()]
 )
