@@ -12,7 +12,7 @@ class MyCustomTool(BaseTool):
 
 agent = Agent(
     role="Calculator",
-    goal="Calculate the sum of two numbers",
+    goal="Calculate the sum of two numbers, about the {query}",
     backstory="The agent should be able to calculate the sum of two numbers",
     verbose=True,
     tools=[MyCustomTool()]
@@ -34,7 +34,7 @@ crew = Crew(
 
 
 if __name__ == "__main__":
-    result = crew.kickoff(inputs={"query": "calculate 3 and 4"})
+    result = crew.kickoff(inputs={"query": "calculate 1 and 4"})
     print(result)
 
 
