@@ -1,4 +1,5 @@
-
+import os,sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 from crewai_tools import BaseTool
 from crewai import Agent, Task, Crew
 
