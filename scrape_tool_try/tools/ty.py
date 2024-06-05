@@ -9,6 +9,15 @@ class MyCustomTool(BaseTool):
 
     def _run(self, a: int, b: int) -> int:
         return a + b
+    def _set_args_schema(self):
+        self.args_schema = {
+            "type": "object",
+            "properties": {
+                "a": {"type": "integer"},
+                "b": {"type": "integer"},
+            },
+            "required": ["a", "b"],
+        }
 
 agent = Agent(
     role="Calculator",
