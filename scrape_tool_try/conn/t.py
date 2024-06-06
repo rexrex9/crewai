@@ -32,6 +32,7 @@ task = Task(
     description="根据用户的{query}，找到他的情绪倾向",
     expected_output="用户的情绪倾向",
     agent=agent,
+    llm=llm
 )
 
 
