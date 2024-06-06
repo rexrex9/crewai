@@ -40,8 +40,9 @@ crew = Crew(
     agents=[agent],
     tasks=[task],
     verbose=2,
-    memory=True,
-    manager_llm=llm
+    #memory=True,
+    manager_llm=llm,
+    llm=llm
 )
 
 inputs = {
