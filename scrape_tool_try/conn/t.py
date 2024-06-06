@@ -39,7 +39,6 @@ crew = Crew(
     tasks=[task],
     verbose=2,
     memory=True,
-    manager_llm=llm
 )
 
 inputs = {
