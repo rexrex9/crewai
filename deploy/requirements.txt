@@ -1,2 +1,5 @@
 crewai
 'crewai[tools]'
+langchain
+google-generativeai
+langchain-google-genai
