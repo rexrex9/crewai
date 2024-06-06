@@ -32,7 +32,7 @@ task = Task(
     description="根据用户的{query}，找到他的情绪倾向",
     expected_output="用户的情绪倾向",
     agent=agent,
-    llm=llm
+    #llm=llm
 )
 
 
@@ -40,9 +40,9 @@ crew = Crew(
     agents=[agent],
     tasks=[task],
     verbose=2,
-    memory=True,
-    manager_llm=llm,
-    llm=llm
+    #memory=True,
+    #manager_llm=llm,
+    #llm=llm
 )
 
 inputs = {
